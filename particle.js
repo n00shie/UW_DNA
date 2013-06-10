@@ -5,6 +5,19 @@
 function Particle(rad, x, y, vx, vy, m) {
     "use strict";
     /**
+     * Checks if this particle is colliding with p, and if they are switches their velocities
+     */
+    function checkCollision(p) {
+        "use strict";
+        if (dist(this, p) <= (this.rad + p.rad)) {
+            this.vx *= -1;
+            this.vy *= -1;
+            p.vx *= -1;
+            p.vy *= -1;
+        }
+    }
+
+    /**
      * Checks if a particle is about to collide with a wall, and changes its velocity if it does.
      */
     function checkWallCollision() {
@@ -42,6 +55,7 @@ function Particle(rad, x, y, vx, vy, m) {
     this.draw = draw;
     this.update = update;
     this.checkWallCollision = checkWallCollision;
+    this.checkCollision = checkCollision;
 }
 
 /**
@@ -52,15 +66,3 @@ function dist(particle1, particle2) {
     return Math.sqrt(Math.pow(particle1.x - particle2.x, 2) + Math.pow(particle1.y - particle2.y, 2));
 }
 
-/**
- * Checks if two particles are colliding, and if they are then changes the velocity of particles
- */
-function check_collision(p1, p2) {
-    "use strict";
-    if (dist(p1, p2) <= (p1.rad + p2.rad)) {
-        p1.vx *= -1;
-        p1.vy *= -1;
-        p2.vx *= -1;
-        p2.vy *= -1;
-    }
-}
