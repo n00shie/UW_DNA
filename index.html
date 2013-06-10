@@ -11,11 +11,11 @@
 
    <body>
         <p>Basic animation - with collisions</p>
-        <canvas id="canvas" width="1000" height="500" style="border:1px solid #000000">
+        <canvas id="canvas" width="1000" height="500" style="border:1px solid #000000" style="position: relative;"> 
+            <!-- the css style is for firefox, see: http://stackoverflow.com/questions/1114465/getting-mouse-location-in-canvas for more information -->
             <p>Your browser does not support the HTML5 canvas tag.</p>
         </canvas>
         <br/>
         <button onclick="init()">Click to start animation</button>
     </body>
 </html>
-.
