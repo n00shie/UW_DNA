@@ -7,7 +7,7 @@ var ctx;
 var displayables; //array of all objects in the animation
 var i, j; //looping variables
 var FPS = 60;
-var NUM_OF_PARTICLES = 20;
+var NUM_OF_PARTICLES = 10;
 var height;
 var width;
 var walker;
@@ -27,7 +27,7 @@ function set_up() {
     
     //Add Walker to displayables
     walker = new Walker();
-    displayables.push();
+    displayables.push(walker);
     
     //register event handlers
     canvas.addEventListener('mouseover', on_mouse_over, false);
@@ -49,8 +49,8 @@ function set_up() {
 }
 
 function on_mouse_over(ev) {
-  var x = ev.clientX - canvas.offsetLeft;
-  var y = ev.clientY - canvas.offsetTop;
+  var x = ev.clientX - canvas.offsetLeft - walker.width/2;
+  var y = ev.clientY - canvas.offsetTop - walker.height/2;
   
   walker.mouseControl = true;
 
@@ -61,8 +61,8 @@ function on_mouse_out(ev) {
 }
 
 function on_mouse_move(ev) {
-    walker.x = ev.clientX - canvas.offsetLeft;
-    walker.y = ev.clientY - canvas.offsetTop;
+    walker.x = ev.clientX - canvas.offsetLeft - walker.width/2;
+    walker.y = ev.clientY - canvas.offsetTop - walker.height/2;
 }
 /**
  * Updates the screen
@@ -70,7 +70,10 @@ function on_mouse_move(ev) {
 function draw() {
     "use strict";
     ctx.clearRect(0, 0, width, height);
-    for (i = 0; i < NUM_OF_PARTICLES; i++) {
+    
+    walker.draw(ctx);
+
+    for (i = 1; i < NUM_OF_PARTICLES - 1; i++) {
         displayables[i].draw(ctx);
     }
 }
@@ -80,7 +83,7 @@ function draw() {
  */
 function run() {
     "use strict";
-    for (i = 0; i < NUM_OF_PARTICLES; i++) {
+    for (i = 1; i < NUM_OF_PARTICLES - 1; i++) {
         displayables[i].update();
         displayables[i].checkWallCollision();
     }

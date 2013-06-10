@@ -9,10 +9,10 @@ function Walker() {
     this.mouseControl = false;
     this.img.src = 'http://upload.wikimedia.org/wikipedia/commons/thumb/8/80/SierpinskiTriangle.svg/200px-SierpinskiTriangle.svg.png';
     
-    this.checkWallCollision = walkerCollidedWithWall;
+    this.checkWallCollision = checkWallCollision;
     this.draw = draw;
     
-    function walkerCollidedWithWall() {
+    function checkWallCollision() {
       if(this.x + this.width + this.collisionBuffer > canvas.width || this.x - this.collisionBuffer < 0 
       || this.y - this.collisionBuffer < 0 || this.y + this.height + this.collisionBuffer > canvas.height) {
         return true;
@@ -25,14 +25,13 @@ function Walker() {
      */
      
     function draw(ctx) {
-      clear();
       ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
       
       if(this.mouseControl){
         return;
       }
       
-      if(this.walkerCollidedWithWall()) {
+      if(this.checkWallCollision()) {
         if(coinToss()){
             delta.x *= -1;
         }
