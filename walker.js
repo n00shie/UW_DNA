@@ -21,28 +21,27 @@ function Walker() {
     }
     
      /**
-     * Draws to screen.
-     */
-     
+      * Draws to screen.
+      */
     function draw(ctx) {
-      clear();
-      ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-      
-      if(this.mouseControl){
-        return;
-      }
-      
-      if(this.walkerCollidedWithWall()) {
-        if(coinToss()){
-            delta.x *= -1;
+        clear();
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+          
+        if(this.mouseControl){
+            return;
         }
-        if(coinToss()){
-            delta.y *= -1;
-        }
-      }
-    
-      this.x += delta.x;
-      this.y += delta.y;
+          
+        if(this.walkerCollidedWithWall()) {
+            if(coinToss()){
+                delta.x *= -1;
+            }
+            if(coinToss()){
+                delta.y *= -1;
+            }
+          }
+        
+          this.x += delta.x;
+          this.y += delta.y;
     }
 }
 
