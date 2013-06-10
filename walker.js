@@ -21,9 +21,8 @@ function Walker() {
     }
     
      /**
-     * Draws to screen.
-     */
-     
+      * Draws to screen.
+      */
     function draw(ctx) {
       ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
       
@@ -39,7 +38,7 @@ function Walker() {
             delta.y *= -1;
         }
       }
-    
+          
       this.x += delta.x;
       this.y += delta.y;
     }

@@ -12,7 +12,6 @@ var height;
 var width;
 var walker;
 
-
 /**
  * Initializes all objects in animation
  */
@@ -53,8 +52,7 @@ function on_mouse_over(ev) {
   var y = ev.clientY - canvas.offsetTop - walker.height/2;
   
   walker.mouseControl = true;
-
-} 
+}
 
 function on_mouse_out(ev) {
   walker.mouseControl = false;
