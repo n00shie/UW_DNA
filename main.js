@@ -29,9 +29,9 @@ function set_up() {
     displayables.push(walker);
     
     //register event handlers
-    canvas.addEventListener('mouseover', on_mouse_over, false);
-    canvas.addEventListener('mouseout', on_mouse_out, false);
-    canvas.addEventListener('mousemove', on_mouse_move, false);
+    // canvas.addEventListener('mouseover', on_mouse_over, false);
+    // canvas.addEventListener('mouseout', on_mouse_out, false);
+    // canvas.addEventListener('mousemove', on_mouse_move, false);
     
     //populate particles
 	var radius, x, y, vx, vy, mass;
@@ -48,10 +48,9 @@ function set_up() {
 }
 
 function on_mouse_over(ev) {
-  var x = ev.clientX - canvas.offsetLeft - walker.width/2;
-  var y = ev.clientY - canvas.offsetTop - walker.height/2;
-  
-  walker.mouseControl = true;
+    walker.x = ev.clientX - canvas.offsetLeft - walker.width/2;
+    walker.y = ev.clientY - canvas.offsetTop;
+    walker.mouseControl = true;
 }
 
 function on_mouse_out(ev) {
@@ -59,8 +58,10 @@ function on_mouse_out(ev) {
 }
 
 function on_mouse_move(ev) {
-    walker.x = ev.clientX - canvas.offsetLeft - walker.width/2;
-    walker.y = ev.clientY - canvas.offsetTop - walker.height/2;
+    if(walker.checkWallCollision()){
+        walker.x = ev.clientX - canvas.offsetLeft - walker.width/2;
+        walker.y = ev.clientY - canvas.offsetTop;
+    }
 }
 /**
  * Updates the screen

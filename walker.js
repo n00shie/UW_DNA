@@ -29,7 +29,7 @@ function Walker() {
       if(this.mouseControl){
         return;
       }
-      
+
       if(this.checkWallCollision()) {
         if(coinToss()){
             delta.x *= -1;
@@ -38,6 +38,7 @@ function Walker() {
             delta.y *= -1;
         }
       }
+
           
       this.x += delta.x;
       this.y += delta.y;
@@ -54,5 +55,5 @@ function clear() {
 }
 
 function coinToss(){
-  return Math.floor( Math.random() * 2 ) == 1;
+  return Math.floor( Math.random() * 5 ) == 1;
 }
